@@ -4,11 +4,12 @@ import '../../../tests/mocks';
 
 describe('ReactiveModel', () => {
   it('responds to findAll', async () => {
+    expect(Person.filter())
+      .to
+      .eql([]);
     const people = await Person.findAll();
     expect(people.length)
-      .to
-      // .not
-      .equals(2);
+      .greaterThan(0);
     Person.clearCache();
     expect(Person.filter())
       .to
