@@ -9,5 +9,9 @@ describe('ReactiveModel', () => {
       .to
       // .not
       .equals(2);
+    Person.clearCache();
+    expect(Person.filter())
+      .to
+      .eql([]);
   });
 });

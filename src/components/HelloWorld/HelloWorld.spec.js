@@ -18,6 +18,8 @@ describe('HelloWorld.vue', () => {
 
   it('renders people after findAll', async () => {
     const wrapper = shallowMount(HelloWorld, {});
+    expect(wrapper.text())
+      .equals('');
     const people = await Person.findAll();
     expect(wrapper.text())
       .to
