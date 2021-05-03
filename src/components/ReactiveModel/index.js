@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import CachedModel from 'sistemium-data/src/CachedModel';
+import { CachedModel } from 'sistemium-data';
 
 import { OFFSET_HEADER } from 'sistemium-data/src/Model';
 

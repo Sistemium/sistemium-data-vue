@@ -1,8 +1,8 @@
 {
   "name": "sistemium-data-vue",
   "version": "0.2.0",
-  "main": "src/components/ReactiveModel/index.js",
-  "types": "types/components/ReactiveModel/index.d.ts",
+  "main": "src/index.js",
+  "typings": "./types/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "sistemium-data": "^1.4.2",
+    "sistemium-data": "^1.4.5",
     "vue": "^2.6.12"
   },
   "devDependencies": {

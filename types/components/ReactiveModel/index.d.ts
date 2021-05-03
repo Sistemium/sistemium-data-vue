@@ -1,4 +1,4 @@
-export default class ReactiveModel {
+export default class ReactiveModel extends CachedModel {
     /**
      * Offset interceptor
      * @param response
@@ -20,3 +20,4 @@ export default class ReactiveModel {
      */
     reactiveGet(id: string): object;
 }
+import { CachedModel } from "sistemium-data";
