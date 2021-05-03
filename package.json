@@ -1,6 +1,6 @@
 {
   "name": "sistemium-data-vue",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/components/ReactiveModel/index.js",
   "types": "types/components/ReactiveModel/index.d.ts",
   "scripts": {
@@ -54,7 +54,9 @@
       }
     ]
   },
-  "eslintIgnore": ["types"],
+  "eslintIgnore": [
+    "types"
+  ],
   "browserslist": [
     "> 1%",
     "last 2 versions",
