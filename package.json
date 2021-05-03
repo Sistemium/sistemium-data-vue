@@ -1,7 +1,8 @@
 {
   "name": "sistemium-data-vue",
   "version": "0.1.0",
-  "main": "src/components/ReactiveModel",
+  "main": "src/components/ReactiveModel/index.js",
+  "types": "types/components/ReactiveModel/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,7 +11,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "sistemium-data": "^1.3.1",
+    "sistemium-data": "^1.4.2",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "typescript": "^4.2.4",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -52,6 +54,7 @@
       }
     ]
   },
+  "eslintIgnore": ["types"],
   "browserslist": [
     "> 1%",
     "last 2 versions",

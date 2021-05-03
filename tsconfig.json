@@ -1,0 +1,12 @@
+{
+  "include": [
+    "src/index.js",
+    "src/components/ReactiveModel/index.js"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "types"
+  }
+}
