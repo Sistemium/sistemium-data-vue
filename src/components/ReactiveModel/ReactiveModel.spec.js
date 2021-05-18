@@ -4,6 +4,7 @@ import '../../../tests/mocks';
 
 describe('ReactiveModel', () => {
   it('responds to findAll', async () => {
+    Person.clearCache();
     expect(Person.filter())
       .to
       .eql([]);

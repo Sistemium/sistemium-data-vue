@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "sistemium-data": "^1.4.6",
+    "sistemium-data": "^1.4.7",
     "vue": "^2.6.12"
   },
   "devDependencies": {

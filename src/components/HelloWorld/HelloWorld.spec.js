@@ -17,6 +17,7 @@ describe('HelloWorld.vue', () => {
   });
 
   it('renders people after findAll', async () => {
+    Person.clearCache();
     const wrapper = shallowMount(HelloWorld, {});
     expect(wrapper.text())
       .equals('');
