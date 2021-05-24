@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "types": "tsc",
     "test:unit": "vue-cli-service test:unit --watch --recursive 'src/**/*.spec.js'",
     "lint": "vue-cli-service lint"
   },
