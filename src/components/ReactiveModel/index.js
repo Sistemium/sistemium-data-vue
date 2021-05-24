@@ -7,6 +7,16 @@ function noop(arg) {
   return arg;
 }
 
+/**
+ * Checks if response has any data
+ * @param response
+ * @returns {boolean}
+ */
+
+function isEmpty(response) {
+  return !!(Array.isArray(response) ? response.length : response);
+}
+
 export default class ReactiveModel extends CachedModel {
   constructor(config) {
     super(config);
@@ -25,8 +35,10 @@ export default class ReactiveModel extends CachedModel {
     const { model } = response.config;
     const { [OFFSET_HEADER]: offset } = response.headers || {};
     const parentResponse = CachedModel.responseInterceptor(response);
-    model.ts = new Date();
-    if (offset) {
+    if (!model.ts || !isEmpty(parentResponse)) {
+      model.ts = new Date();
+    }
+    if (offset && offset !== model.lastFetchOffset) {
       model.lastFetchOffset = offset;
     }
     return parentResponse;

@@ -22,6 +22,7 @@ describe('HelloWorld.vue', () => {
     expect(wrapper.text())
       .equals('');
     const people = await Person.findAll();
+    await wrapper.vm.$nextTick();
     expect(wrapper.text())
       .to
       .include(people[0].name);
