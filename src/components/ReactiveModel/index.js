@@ -14,7 +14,7 @@ function noop(arg) {
  */
 
 function isEmpty(response) {
-  return !!(Array.isArray(response) ? response.length : response);
+  return !(Array.isArray(response) ? response.length : response);
 }
 
 export default class ReactiveModel extends CachedModel {

@@ -27,4 +27,15 @@ describe('HelloWorld.vue', () => {
       .to
       .include(people[0].name);
   });
+
+  it('renders people after create', async () => {
+    Person.clearCache();
+    const wrapper = shallowMount(HelloWorld, {});
+    const name = 'test';
+    await Person.create({ id: name, name });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.text())
+      .to
+      .include(name);
+  });
 });
