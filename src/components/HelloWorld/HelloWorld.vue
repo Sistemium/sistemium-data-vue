@@ -17,10 +17,15 @@ export default {
 
   props: {
     msg: String,
+    fatherId: String,
   },
 
   computed: {
     people() {
+      const { fatherId } = this;
+      if (fatherId) {
+        return Person.reactiveManyByIndex('fatherId', fatherId);
+      }
       return Person.reactiveFilter({});
     },
   },

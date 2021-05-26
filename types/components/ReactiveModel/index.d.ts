@@ -8,11 +8,18 @@ export default class ReactiveModel extends CachedModel {
     static responseInterceptor(response: any): any;
     constructor(config: any);
     /**
+     * Get array of indexed records
+     * @param {string} column
+     * @param {string|number|boolean} value
+     * @returns {array}
+     */
+    reactiveManyByIndex(column: string, value: string | number | boolean): any[];
+    /**
      * Returns array of records with filter depending on model.ts
-     * @param {object} [filter]
+     * @param {object|function} [filter]
      * @returns {object[]}
      */
-    reactiveFilter(filter?: object): object[];
+    reactiveFilter(filter?: object | Function): object[];
     /**
      * Get one record reactively
      * @param {string} id

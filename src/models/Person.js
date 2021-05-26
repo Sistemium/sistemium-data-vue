@@ -5,5 +5,6 @@ export default new ReactiveModel({
   schema: {
     name: String,
     id: String,
+    fatherId: String,
   },
 });

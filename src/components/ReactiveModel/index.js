@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import { CachedModel } from 'sistemium-data';
-
-import { OFFSET_HEADER } from 'sistemium-data/src/Model';
+import { OFFSET_HEADER, OP_DELETE_ONE } from 'sistemium-data/src/Model';
 
 function noop(arg) {
   return arg;
@@ -32,10 +31,13 @@ export default class ReactiveModel extends CachedModel {
    */
 
   static responseInterceptor(response) {
-    const { model } = response.config;
+    const { model, op } = response.config;
     const { [OFFSET_HEADER]: offset } = response.headers || {};
     const parentResponse = CachedModel.responseInterceptor(response);
-    if (!model.ts || !isEmpty(parentResponse)) {
+    const shouldUpdateTs = op === OP_DELETE_ONE
+      || !model.ts
+      || !isEmpty(parentResponse);
+    if (shouldUpdateTs) {
       model.ts = new Date();
     }
     if (offset && offset !== model.lastFetchOffset) {
@@ -45,8 +47,20 @@ export default class ReactiveModel extends CachedModel {
   }
 
   /**
+   * Get array of indexed records
+   * @param {string} column
+   * @param {string|number|boolean} value
+   * @returns {array}
+   */
+
+  reactiveManyByIndex(column, value) {
+    noop(this.ts);
+    return this.getManyByIndex(column, value);
+  }
+
+  /**
    * Returns array of records with filter depending on model.ts
-   * @param {object} [filter]
+   * @param {object|function} [filter]
    * @returns {object[]}
    */
 
