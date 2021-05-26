@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import Person from '../../models/Person';
-import '../../../tests/mocks';
+import Person from '@/models/Person';
+import '@/../tests/mocks';
 
 describe('ReactiveModel', () => {
   it('responds to findAll', async () => {
