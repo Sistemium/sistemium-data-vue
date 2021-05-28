@@ -16,4 +16,24 @@ describe('ReactiveModel', () => {
       .to
       .eql([]);
   });
+
+  it('updates toOneIndexes after create', async () => {
+    const [child] = await Person.findAll();
+    const {
+      id,
+      name,
+      fatherId,
+    } = child;
+    await Person.create({
+      ...child,
+      name: `${name}-2`,
+    });
+    expect(Person.getByID(id).name)
+      .not
+      .equals(name);
+    const [updated] = Person.reactiveManyByIndex('fatherId', fatherId);
+    expect(updated.name)
+      .not
+      .equals(name);
+  });
 });
