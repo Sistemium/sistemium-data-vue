@@ -1,12 +1,14 @@
 export default class ReactiveModel extends CachedModel {
     /**
      * Offset interceptor
-     * @param response
+     * @param {object | import('axios').AxiosResponse}response
      * @returns {*}
      * @package
      */
-    static responseInterceptor(response: any): any;
+    static responseInterceptor(response: object | import('axios').AxiosResponse): any;
     constructor(config: any);
+    ts: any;
+    lastFetchOffset: import("vue").Ref<string>;
     /**
      * Get array of indexed records
      * @param {string} column
@@ -27,4 +29,4 @@ export default class ReactiveModel extends CachedModel {
      */
     reactiveGet(id: string): object;
 }
-import { CachedModel } from "sistemium-data";
+import { CachedModel } from 'sistemium-data';

@@ -14,6 +14,7 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@babel/types": "^7.21.4",
     "@vue/eslint-config-airbnb": "^7.0.0",
     "@vue/test-utils": "^2.3.2",
     "axios-mock-adapter": "^1.21.4",
