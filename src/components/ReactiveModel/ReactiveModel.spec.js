@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from 'vitest';
 import Person from '@/models/Person';
 import '@/../tests/mocks';
 

@@ -1,14 +1,14 @@
-import Vue from 'vue';
+import { ref } from 'vue';
 import { CachedModel } from 'sistemium-data';
 import { OFFSET_HEADER, OP_DELETE_ONE } from 'sistemium-data/src/Model';
 
 function noop(arg) {
-  return arg;
+  return arg.value;
 }
 
 /**
  * Checks if response has any data
- * @param response
+ * @param {object | import('axios').AxiosResponse}response
  * @returns {boolean}
  */
 
@@ -19,29 +19,29 @@ function isEmpty(response) {
 export default class ReactiveModel extends CachedModel {
   constructor(config) {
     super(config);
-    Vue.util.defineReactive(this, 'ts', null);
-    Vue.util.defineReactive(this, 'lastFetchOffset', null);
+    this.ts = ref(null);
+    this.lastFetchOffset = ref('');
   }
 
   /**
    * Offset interceptor
-   * @param response
+   * @param {object | import('axios').AxiosResponse}response
    * @returns {*}
    * @package
    */
 
   static responseInterceptor(response) {
-    const { model, op } = response.config;
+    const { config: { model, op } } = response;
     const { [OFFSET_HEADER]: offset } = response.headers || {};
     const parentResponse = CachedModel.responseInterceptor(response);
     const shouldUpdateTs = op === OP_DELETE_ONE
-      || !model.ts
+      || !model.ts.value
       || !isEmpty(parentResponse);
     if (shouldUpdateTs) {
-      model.ts = new Date();
+      model.ts.value = new Date();
     }
-    if (offset && offset !== model.lastFetchOffset) {
-      model.lastFetchOffset = offset;
+    if (offset && offset !== model.lastFetchOffset.value) {
+      model.lastFetchOffset.value = offset;
     }
     return parentResponse;
   }
