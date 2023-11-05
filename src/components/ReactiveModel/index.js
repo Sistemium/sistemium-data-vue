@@ -33,6 +33,9 @@ export default class ReactiveModel extends CachedModel {
   static responseInterceptor(response) {
     const { config: { model, op } } = response;
     const { [OFFSET_HEADER]: offset } = response.headers || {};
+    if (!model) {
+      return;
+    }
     const parentResponse = CachedModel.responseInterceptor(response);
     const shouldUpdateTs = op === OP_DELETE_ONE
       || !model.ts.value
