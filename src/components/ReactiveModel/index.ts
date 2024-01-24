@@ -1,36 +1,37 @@
-import { ref } from 'vue';
-import { CachedModel } from 'sistemium-data';
-import { OFFSET_HEADER, OP_DELETE_ONE } from 'sistemium-data/src/Model';
+import { Ref, ref } from 'vue';
+import { AxiosResponse, CachedModel, OFFSET_HEADER, OP_DELETE_ONE } from 'sistemium-data';
+import { BaseItem } from 'sistemium-data';
+import { CachedRequestConfig } from 'sistemium-data/lib/CachedModel';
+import { PredicateFn } from 'sistemium-data/lib/util/predicates';
 
-function noop(arg) {
+function noop(arg: { value: any }) {
   return arg.value;
 }
 
 /**
  * Checks if response has any data
- * @param {object | import('axios').AxiosResponse}response
- * @returns {boolean}
  */
 
-function isEmpty(response) {
+function isEmpty(response: any) {
   return !(Array.isArray(response) ? response.length : response);
 }
 
-export default class ReactiveModel extends CachedModel {
-  constructor(config) {
-    super(config);
-    this.ts = ref(null);
-    this.lastFetchOffset = ref('');
-  }
+interface IReactiveModel { ts: Ref<any>, lastFetchOffset: Ref<string> }
+
+export type ReactiveRequestConfig = CachedRequestConfig & { model: IReactiveModel }
+
+export default class ReactiveModel<T extends BaseItem = BaseItem> extends CachedModel<T> implements IReactiveModel {
+
+  ts = ref()
+  lastFetchOffset = ref('');
 
   /**
    * Offset interceptor
-   * @param {object | import('axios').AxiosResponse}response
-   * @returns {*}
-   * @package
    */
 
-  static responseInterceptor(response) {
+  static responseInterceptor(response: AxiosResponse & {
+    config: ReactiveRequestConfig;
+  }) {
     const { config: { model, op } } = response;
     const { [OFFSET_HEADER]: offset } = response.headers || {};
     if (!model) {
@@ -51,35 +52,31 @@ export default class ReactiveModel extends CachedModel {
 
   /**
    * Get array of indexed records
-   * @param {string} column
-   * @param {string|number|boolean} value
-   * @returns {array}
    */
 
-  reactiveManyByIndex(column, value) {
+  reactiveManyByIndex(column: string, value: KeyType) {
     noop(this.ts);
     return this.getManyByIndex(column, value);
   }
 
   /**
    * Returns array of records with filter depending on model.ts
-   * @param {object|function} [filter]
-   * @returns {object[]}
    */
 
-  reactiveFilter(filter) {
+  reactiveFilter(filter: BaseItem | PredicateFn = {}) {
     noop(this.ts);
     return this.filter(filter);
   }
 
   /**
    * Get one record reactively
-   * @param {string} id
-   * @returns {object}
    */
 
-  reactiveGet(id) {
+  reactiveGet(id?: string) {
     noop(this.ts);
+    if (!id) {
+      return undefined
+    }
     return this.getByID(id);
   }
 }
