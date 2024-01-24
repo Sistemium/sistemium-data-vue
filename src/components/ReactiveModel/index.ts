@@ -3,6 +3,7 @@ import { AxiosResponse, CachedModel, OFFSET_HEADER, OP_DELETE_ONE } from 'sistem
 import { BaseItem } from 'sistemium-data';
 import { CachedRequestConfig } from 'sistemium-data/lib/CachedModel';
 import { PredicateFn } from 'sistemium-data/lib/util/predicates';
+import {ModelConfig} from "sistemium-data/lib/Model";
 
 function noop(arg: { value: any }) {
   return arg.value;
@@ -24,6 +25,10 @@ export default class ReactiveModel<T extends BaseItem = BaseItem> extends Cached
 
   ts = ref()
   lastFetchOffset = ref('');
+
+  constructor(config: ModelConfig) {
+    super(config);
+  }
 
   /**
    * Offset interceptor
