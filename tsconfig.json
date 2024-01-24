@@ -6,6 +6,17 @@
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
-    "outDir": "lib"
+    "outDir": "lib",
+    "target": "es2020",
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true
   }
 }
