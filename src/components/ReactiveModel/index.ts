@@ -1,9 +1,8 @@
 import { Ref, ref } from 'vue';
-import { AxiosResponse, CachedModel, OFFSET_HEADER, OP_DELETE_ONE } from 'sistemium-data';
-import { BaseItem } from 'sistemium-data';
-import { CachedRequestConfig } from 'sistemium-data/lib/CachedModel';
-import { PredicateFn } from 'sistemium-data/lib/util/predicates';
-import {ModelConfig} from "sistemium-data/lib/Model";
+import { CachedModel, OFFSET_HEADER, OP_DELETE_ONE } from 'sistemium-data';
+import type { BaseItem, AxiosResponse, ModelConfig } from 'sistemium-data';
+import type { CachedRequestConfig, KeyType } from 'sistemium-data/lib/CachedModel';
+import type { PredicateFn } from 'sistemium-data/lib/util/predicates';
 
 function noop(arg: { value: any }) {
   return arg.value;
