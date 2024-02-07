@@ -1,6 +1,6 @@
 {
   "name": "sistemium-data-vue",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "main": "lib/index.js",
   "files": [
     "lib"
