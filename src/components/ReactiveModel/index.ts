@@ -67,7 +67,7 @@ export default class ReactiveModel<T extends BaseItem = BaseItem> extends Cached
    * Returns array of records with filter depending on model.ts
    */
 
-  reactiveFilter(filter: BaseItem | PredicateFn = {}) {
+  reactiveFilter(filter: (Partial<T> & BaseItem) | PredicateFn = {}) {
     noop(this.ts);
     return this.filter(filter);
   }
