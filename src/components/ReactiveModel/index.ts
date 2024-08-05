@@ -83,4 +83,15 @@ export default class ReactiveModel<T extends BaseItem = BaseItem> extends Cached
     }
     return this.getByID(id);
   }
+
+  eject(id: string) {
+    super.eject(id)
+    this.ts.value = new Date()
+  }
+
+  clearCache() {
+    super.clearCache()
+    this.ts.value = new Date()
+  }
+
 }
