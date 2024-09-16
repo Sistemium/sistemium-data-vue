@@ -91,7 +91,9 @@ export default class ReactiveModel<T extends BaseItem = BaseItem> extends Cached
 
   clearCache() {
     super.clearCache()
-    this.ts.value = new Date()
+    if (this.ts) {
+      this.ts.value = new Date()
+    }
   }
 
 }
