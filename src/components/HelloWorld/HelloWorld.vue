@@ -7,12 +7,10 @@
   </div>
 </template>
 
-<script>
-
-import Person from '../../models/Person';
+<script lang="ts">
+import Person from '../../models/Person'
 
 export default {
-
   name: 'HelloWorld',
 
   props: {
@@ -22,13 +20,12 @@ export default {
 
   computed: {
     people() {
-      const { fatherId } = this;
+      const { fatherId } = this
       if (fatherId) {
-        return Person.reactiveManyByIndex('fatherId', fatherId);
+        return Person.reactiveManyByIndex('fatherId', fatherId)
       }
-      return Person.reactiveFilter({});
+      return Person.reactiveFilter({})
     },
   },
-
-};
+}
 </script>

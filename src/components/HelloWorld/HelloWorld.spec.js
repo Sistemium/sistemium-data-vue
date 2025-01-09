@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { expect } from 'vitest';
-import '@/../tests/mocks';
+import '../../../tests/mocks';
 import Person from '@/models/Person';
 
 import HelloWorld from './HelloWorld.vue';
