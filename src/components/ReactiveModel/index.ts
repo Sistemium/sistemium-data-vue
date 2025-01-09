@@ -100,11 +100,12 @@ export default class ReactiveModel<T extends BaseItem = BaseItem>
   reactiveMany(ids: string[]): T[] {
     const res: T[] = []
     ids.forEach((id) => {
-      const record = this.reactiveGet(id)
+      const record = this.getByID(id)
       if (record) {
         res.push(record)
       }
     })
+    noop(this.ts)
     return res
   }
 
