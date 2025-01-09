@@ -93,6 +93,19 @@ export default class ReactiveModel<T extends BaseItem = BaseItem>
     return this.getByID(id)
   }
 
+  /**
+   * Get an array of records reactively by ids
+   */
+
+  reactiveMany(ids: string[]): T[] {
+    const res: T[] = []
+    ids.forEach((id) => {
+      const record = this.reactiveGet(id)
+      if (record) {
+        res.push(record)
+      }
+    })
+    return res
   }
 
   eject(id: string) {
