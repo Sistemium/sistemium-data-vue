@@ -1,7 +1,8 @@
 {
   "include": [
     "src/index.ts",
-    "src/components/ReactiveModel/index.ts"
+    "src/components/ReactiveModel/index.ts",
+    "src/components/HydratedModel/index.ts"
   ],
   "compilerOptions": {
     "allowJs": true,
