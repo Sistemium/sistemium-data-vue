@@ -50,7 +50,7 @@ export default class ReactiveModel<T extends BaseItem = BaseItem>
     } = response
     const { [OFFSET_HEADER]: offset } = response.headers || {}
     if (!model) {
-      return
+      return response
     }
     const parentResponse = CachedModel.responseInterceptor(response)
     const shouldUpdateTs = op === OP_DELETE_ONE || !model.ts.value || !isEmpty(parentResponse)
@@ -85,7 +85,7 @@ export default class ReactiveModel<T extends BaseItem = BaseItem>
    * Get one record reactively
    */
 
-  reactiveGet(id?: string) {
+  reactiveGet(id?: string): T | undefined {
     noop(this.ts)
     if (!id) {
       return undefined
