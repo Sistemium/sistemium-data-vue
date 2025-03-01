@@ -3,7 +3,7 @@ import { StoreAdapter } from 'sistemium-data'
 import type { PredicateFn } from 'sistemium-data/lib/util/predicates'
 import type { BaseItem } from 'sistemium-data'
 
-const storeAdapter = new StoreAdapter()
+export const storeAdapter = new StoreAdapter()
 
 export interface RelationsConfig {
   [relationName: string]: string
