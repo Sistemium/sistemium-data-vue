@@ -76,7 +76,7 @@ export default class ReactiveModel<T extends BaseItem = BaseItem>
    * Returns array of records with filter depending on model.ts
    */
 
-  reactiveFilter(filter: (Partial<T> & BaseItem) | PredicateFn = {}) {
+  reactiveFilter(filter: (Partial<T> & BaseItem) | PredicateFn<T> = {}) {
     noop(this.ts)
     return this.filter(filter)
   }
